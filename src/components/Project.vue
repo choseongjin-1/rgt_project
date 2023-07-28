@@ -52,7 +52,7 @@ export default {
     // 데이터조회
     const selectRgt = () => {
 
-      axios.get("http://172.30.1.11:9090/rgt/selectRgt")
+      axios.get("http://175.195.162.192:8888/rgt/selectRgt")
         .then(({ data }) => {
           console.log("then ==> ", data);
 
@@ -87,7 +87,7 @@ export default {
           "orderer_name": "홍o동"
       }
 
-      axios.post("http://172.30.1.11:9090/rgt/insertRgt", param)
+      axios.post("http://175.195.162.192:8888/rgt/insertRgt", param)
         .then(({ data }) => {
           console.log("then ==> ", data);
 
@@ -109,7 +109,7 @@ export default {
     // 중복데이터 삭제
     const deleteRgt = () => {
 
-      axios.delete("http://172.30.1.11:9090/rgt/deleteRgt", {})
+      axios.delete("http://175.195.162.192:8888/rgt/deleteRgt", {})
         .then(({ data }) => {
           console.log("then ==> ", data);
 
@@ -142,7 +142,7 @@ export default {
     const googleLogin = (code) => {
       console.log("googleLogin!!!! ==> ", code);
 
-      axios.post(`http://172.30.1.11:9090/rgt/googleLogin`, {code})
+      axios.post(`http://175.195.162.192:8888/rgt/googleLogin`, {code})
         .then(({ data }) => {
           console.log("then ==> ", JSON.parse(JSON.stringify(data)));
 
