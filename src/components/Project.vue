@@ -129,8 +129,9 @@ export default {
 
     // 구글인증코드 쿼리 받아오기
     const getAuthCode = () => {
+      const isDev = process.env.NODE_ENV == "development"
       const clientId = "207832730817-hoifath6cg2p9ugbagm9e3itaj8g7qar.apps.googleusercontent.com"
-      const redirectUri = "http://localhost:8080"
+      const redirectUri = isDev ? "http://localhost:8080" : "http://sj-webserver.s3-website.ap-northeast-2.amazonaws.com"
       const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=email profile`
       console.log("googleCode ==> ", url);
       let hiddenElement = document.createElement('a');
@@ -141,8 +142,10 @@ export default {
     // 구글로그인
     const googleLogin = (code) => {
       console.log("googleLogin!!!! ==> ", code);
+      const isDev = process.env.NODE_ENV == "development"
+      const redirectUri = isDev ? "http://localhost:8080" : "http://sj-webserver.s3-website.ap-northeast-2.amazonaws.com"
 
-      axios.post(`http://175.195.162.192:8888/rgt/googleLogin`, {code})
+      axios.post(`http://175.195.162.192:8888/rgt/googleLogin`, {code, redirectUri})
         .then(({ data }) => {
           console.log("then ==> ", JSON.parse(JSON.stringify(data)));
 
